@@ -442,14 +442,90 @@ def correlacao():
     x = merged['selic_diaria']
     y = merged['inadimplencia']
 
-'''
-O Polyfit retorna um array de polinomios, ode o grau 1 devolve dosi valores
-[m] será nosso coeficiente angular (inclinação da reta)
-[b] sera nosso coeficiente linear (interceptor(valor de y quando x = 0))
-'''
+    '''
+    O Polyfit retorna um array de polinomios, ode o grau 1 devolve dosi valores
+    [m] será nosso coeficiente angular (inclinação da reta)
+    [b] sera nosso coeficiente linear (interceptor(valor de y quando x = 0))
+    '''
 
     m, b = np.polyfit(x, y, 1)
 
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+            x = x,
+            y = y,
+            mode = 'markers',
+            name = "Inadimplencia x Selic",
+            hovertemplate = 'SELIC; %(X:.2f)% <br>Inadimplencia: %(y:.2f)% <extra></extra>',
+            marker = dict(
+                    color = 'rgba(0, 123, 255, 0.8)',
+                    size = 12,
+                    line = dict(
+                            width = 2,
+                            color = 'white'
+                    ),
+                    symbol = 'circle'
+            ) 
+        )
+    )
+
+    fig.add_trace(go.Scatter(
+            x = x,
+            y = m * x + b,
+            mode = 'lines',
+            name = 'Linha de Tendencia',
+            line = dict(
+                color = 'rgba(212, 10, 19, 1)',
+                width = 10, #Define a largura da linha
+                dash = 'dot' #Define o tipo da linha 
+            )
+        )
+    )
+
+    fig.update_layout(
+        title = {
+            'text':'<b>Correlação entre Selic e Inadimplencia</b><br><span style= "font-size:16px;">'Coeficiente de Correlação: {correl:.2f}</span>', 
+            'y':'0.95',
+            'x':'0.5',
+            'xanchor':'center',
+            'yanchor':'top' 
+        },
+        xaxis_title = dict(
+            text = 'Selic Médi Mensal (%)',
+            font = dict(size = 22, family= 'Arial', color= 'gray')
+        ),
+        yaxis_title = dict(
+            text = 'Inadimplencia (%)',
+            font = dict(size = 22, family= 'Arial', color= 'gray')
+        ),
+        xaxis = dict(
+            tickfont = dict(size=14, family='Arial', color= 'green'),
+            gridcolor = 'lightgray'
+
+        ),
+        yaxis = dict(
+            tickfont = dict(size=14, family='Arial', color= 'green'),
+            gridcolor = 'lightgray'
+
+        ),
+        plot_bgcolor = '#f8f9fb',
+        paper_bgcolor = 'white'
+        font = dict(dict(size=14, family='Arial', color= 'green'
+        ),
+        legend = dict(
+            orientantion = 'h',
+            yanchor = 'bottom',
+            xanchor = 'center',
+            x = 0.5,
+            y = 1.05,
+            bgcolor = 'rgba(1, 1, 1, 1)',
+            bordewidth = 0
+        ),
+        margin = dict(l=60, r=60, t=120, b=60)
+
+    )
+
+    graph_html =fig.to_html(full_html=False, include_plotlyjs= 'cdn')
     return render_template_string('''
             <html>
             <head>
@@ -465,14 +541,14 @@ O Polyfit retorna um array de polinomios, ode o grau 1 devolve dosi valores
             <body>
                 <div class="container">
                 <h1> Correlação Selic vs Inadimplência </h1>
-                <h4> Valor de correlação: {{v_correl|safe }} </h4>
-                <div> </div>
+                
+                <div> </div> {{grafico_correlacao|safe}} <div>
                 <br>
                 <div> <a href="/"> Voltar </a> </div> 
                                 
             </body>               
         <html>                
-    ''', v_correl = correl)
+    ''', grafico_correlacao = graph_html)
 
 
 if __name__ == '__main__':
