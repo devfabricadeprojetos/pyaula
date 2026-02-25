@@ -1,0 +1,101 @@
+tabelas - potly e dash 
+
+https://codeorigins.vercel.app/
+
+
+codepen io - java script, html, css
+
+dontpad - compartilhar texto
+
+maujor especialista em CSS
+
+regra de sintax 
+
+color adobe para melhorara os graficos 
+
+zoom int - power toys 
+
+Cadeira rosa musica para codigo 
+
+prometheus ou grafana (observação)
+
+jus chat
+
+fiverr 
+workana 
+
+leetcode.com
+
+
+
+orientação objeto 
+
+                        ETL em programação - **ETL** é uma sigla para **Extract, Transform, Load** (Extrair, Transformar e Carregar). É o processo fundamental na engenharia de dados para mover informações de um lugar para outro, garantindo que elas cheguem úteis e organizadas ao destino.
+
+                        Imagine que você está fazendo um suco: você pega as frutas (Extração), descasca e bate (Transformação) e coloca no copo (Carga).
+
+                        ---
+
+                        ## As Três Fases do ETL
+
+                        ### 1. Extração (Extract)
+
+                        Nesta fase, o código se conecta a diversas fontes para coletar os dados brutos. Essas fontes podem ser:
+
+                        * Bancos de dados SQL (MySQL, PostgreSQL).
+                        * Arquivos locais (CSV, JSON, Excel).
+                        * APIs externas (como dados de clima ou cotação de moedas).
+                        * Logs de servidores.
+
+                        ### 2. Transformação (Transform)
+
+                        Esta é a parte "mágica" e a mais trabalhosa. Aqui, os dados são limpos e moldados. Exemplos de tarefas:
+
+                        * **Limpeza:** Remover linhas duplicadas ou tratar valores nulos (vazios).
+                        * **Padronização:** Converter datas (ex: de `DD/MM/AAAA` para `AAAA-MM-DD`).
+                        * **Cálculos:** Criar novas colunas (ex: multiplicar `preço` por `quantidade`).
+                        * **Filtragem:** Manter apenas os dados que interessam para o negócio.
+
+                        ### 3. Carga (Load)
+
+                        Finalmente, os dados transformados são gravados em um destino final para serem analisados. Geralmente, o destino é:
+
+                        * **Data Warehouse:** Um banco de dados otimizado para relatórios (ex: BigQuery, Snowflake, AWS Redshift).
+                        * **Data Lake:** Para armazenamento em larga escala.
+                        * **Ferramentas de BI:** Diretamente para o Power BI ou Tableau.
+
+                        
+                        
+
+                        ** ETL vs. ELT (A variação moderna)
+
+                        Hoje em dia, com o poder da nuvem, existe também o **ELT**.
+
+                        * **ETL:** A transformação ocorre *antes* de chegar ao banco (ideal para dados sensíveis ou quando o destino é rígido).
+                        * **ELT:** Os dados brutos são carregados primeiro e a transformação acontece *dentro* do banco de destino (muito comum em Big Data).
+
+                        ## Ferramentas populares
+
+                        * **Programação Pura:** Python (usando bibliotecas como `Pandas` ou `PySpark`).
+                        * **Orquestradores:** Apache Airflow, Prefect, Dagster.
+                        * **Ferramentas No-Code/Low-Code:** Talend, Pentaho, AWS Glue, Azure Data Factory.**
+
+
+
+@app.route('/graficos')
+def graficos():
+
+    return render_template_string('''
+        <html>
+            <head>
+                <title> Graficos Economicos </title>
+            <head>
+            <body>
+                <h1> Graficos Economicos </h1>
+                <div>
+                    <div>   </div>                                
+                    <div>   </div>
+                </div>
+            </body>               
+        <html>                
+    ''')
